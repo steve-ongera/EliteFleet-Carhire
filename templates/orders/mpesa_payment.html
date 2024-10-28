@@ -1,0 +1,15 @@
+<!-- mpesa_payment.html -->
+<section class="section-content padding-y bg">
+    <div class="container">
+        <h4 class="text-center mb-20">Enter Your M-Pesa Phone Number</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" name="phone_number" class="form-control" required>
+            </div>
+            <input type="hidden" name="order_number" value="{{ order.order_number }}">
+            <button type="submit" class="btn btn-primary btn-block">Confirm Payment</button>
+        </form>
+    </div>
+</section>

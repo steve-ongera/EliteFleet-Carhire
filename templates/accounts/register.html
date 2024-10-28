@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style>
+    .input-group-append .input-group-text {
+        background: none;
+        border-left: none;
+    }
+    .input-group-text i {
+        cursor: pointer;
+    }
+</style>
+
+
+<section class="section-content padding-y">
+
+<!-- ============================ COMPONENT REGISTER   ================================= -->
+	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+      <article class="card-body">
+    {% include 'includes/alerts.html' %}
+		<header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+		<form action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
+
+
+				<div class="form-row">
+					<div class="col form-group">
+						<label>First name</label>
+					  	{{ form.first_name }}
+					</div> <!-- form-group end.// -->
+					<div class="col form-group">
+						<label>Last name</label>
+					  	{{ form.last_name }}
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+					  <label>Email Address</label>
+					  {{form.email}}
+					</div> <!-- form-group end.// -->
+					<div class="form-group col-md-6">
+					  <label>Phone Number</label>
+					  {{form.phone_number}}
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row.// -->
+				    <div class="form-row">
+						<div class="form-group col-md-6">
+							<label>Create password</label>
+							<div class="input-group">
+								{{ form.password }}
+								<div class="input-group-append">
+									<span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+										<i class="fa fa-eye" id="eyeIcon"></i>
+									</span>
+								</div>
+							</div> <!-- input-group end.// -->
+						</div> <!-- form-group end.// -->
+						<div class="form-group col-md-6">
+							<label>Repeat password</label>
+							<div class="input-group">
+								{{ form.confirm_password }}
+								<div class="input-group-append">
+									<span class="input-group-text" id="toggleConfirmPassword" style="cursor: pointer;">
+										<i class="fa fa-eye" id="confirmEyeIcon"></i>
+									</span>
+								</div>
+							</div> <!-- input-group end.// -->
+						</div> <!-- form-group end.// -->
+						
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-block"> Register  </button>
+					</div> <!-- form-group// -->
+      {{ form.email.errors }}
+      {{ form.non_field_errors }}
+			</form>
+		</article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
+    <br><br>
+<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordField = document.querySelector("input[name='password']");
+        const eyeIcon = document.getElementById("eyeIcon");
+
+        togglePassword.addEventListener("click", function() {
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+            eyeIcon.classList.toggle("fa-eye");
+            eyeIcon.classList.toggle("fa-eye-slash");
+        });
+
+        const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+        const confirmPasswordField = document.querySelector("input[name='confirm_password']");
+        const confirmEyeIcon = document.getElementById("confirmEyeIcon");
+
+        toggleConfirmPassword.addEventListener("click", function() {
+            const type = confirmPasswordField.getAttribute("type") === "password" ? "text" : "password";
+            confirmPasswordField.setAttribute("type", type);
+            confirmEyeIcon.classList.toggle("fa-eye");
+            confirmEyeIcon.classList.toggle("fa-eye-slash");
+        });
+    });
+</script>
+
+
+
+{% endblock %}

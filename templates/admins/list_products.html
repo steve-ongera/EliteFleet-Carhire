@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="card-block">
+    <div class="dt-responsive table-responsive">
+        <table id="base-style" class="table table-striped table-bordered nowrap">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Details </th>
+                    <th> price </th>
+                    <th> Stock </th>
+                    <th> Available </th>
+                    <th> category </th>
+               
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+               
+                    <td><a class="aside" href="{{ product.get_url }}"><img src="{{ product.images.url }}" class="img-sm"></a> </td>
+                    <td> <a href="{{ product.get_url }}" class="title">{{ product.product_name }} ~ <b> Ksh {{ product.price }}</b></span></a> </td>
+                    <td><a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details </a></td>
+                    <td>{{ product.price }} ksh</td>
+                    <td>{{ product.stock}}</td>
+                    <td>{{ product.is_available}}</td>
+                    <td> {{ product.category.category_name}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>       
+          
+	
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+    .form-group input, select {
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+    }
+    .form-group textarea {
+        background: transparent;
+        border: 1px solid gray;
+        padding: 1rem;
+        border-radius: 15px;
+        width: 100%;
+        height: 100px;
+        color: black;
+        font-weight: 500;
+        outline: none;
+    }
+    .form-group img {
+        max-width: 100px;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>    
+
+
+<div class="container">
+    <header class="mb-4"><h4 class="card-title">Update Profile </h4></header>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number</label>
+                        {{ form.phone_number }}
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
